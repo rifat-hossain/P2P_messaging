@@ -20,7 +20,6 @@ class messenger(DatagramProtocol):
             txt = input(":::")
             if(txt == "$exit"):
                 self.address = input("Write address: "), int(input("Write port: "))
-                break
             else:
                 self.transport.write(txt.encode("utf-8"), self.address)
 

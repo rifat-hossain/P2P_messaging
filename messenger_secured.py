@@ -27,8 +27,10 @@ class messenger(DatagramProtocol):
         while True:
             txt = input(":::")
             if(txt == "$exit"):
-                reactor.stop()
-                break
+                self.address = input("Write address: "), int(input("Write port: "))
+                c_key = input("Enter Client Key: ").encode()
+                global c_fernet
+                c_fernet = Fernet(c_key)
             else:
                 entxt = fernet.encrypt(txt.encode())
                 self.transport.write(entxt, self.address)
