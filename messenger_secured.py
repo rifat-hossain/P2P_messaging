@@ -5,9 +5,7 @@ import random
 import socket
 
 key = Fernet.generate_key()
-c_key = b""
 fernet = Fernet(key)
-c_fernet = Fernet(key)
 
 class messenger(DatagramProtocol):
     def __init__(self, host, port):
@@ -18,6 +16,7 @@ class messenger(DatagramProtocol):
         print("User Key: ",key.decode())
         self.address = input("Write address: "), int(input("Write port: "))
         c_key = input("Enter Client Key: ").encode()
+        global c_fernet
         c_fernet = Fernet(c_key)
         reactor.callInThread(self.send_message)
     
